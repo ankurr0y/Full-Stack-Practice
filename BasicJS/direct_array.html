@@ -23,6 +23,19 @@
 		array2.length=55;
 		array2.fill("Ankur",3);
 		document.writeln(array2);
+		var arr1=[34,23];
+		var arr2=[2,34,5];
+		function confirm(arr_element) {
+			return x>10;
+			document.writeln(x);
+		}
+		one=arr1.every(confirm);
+		two=arr2.every(confirm);
+		document.getElementById('one').innerHTML=one;
+		document.getElementById('two').innerHTML=two;
+		arr1.forEach(function display(values) {
+			document.writeln(values);
+		});
 	</script>
 </body>
 </html>

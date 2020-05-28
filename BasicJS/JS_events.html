@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div onmouseover="onMouseOver()" onmouseout="onMouseOut()">Over Here!!</div>
+	<button onclick="getStatement()">This button</button>
+	<script type="text/javascript">
+		function getStatement() {
+			alert("Statement");
+		}
+		function onMouseOut() {
+			document.writeln("Mouse is out");
+		}
+		function onMouseOver() {
+			document.writeln("Mouse is over");
+		}
+	</script>
+</body>
+</html>
