@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var image=null;
+		function init(){
+			image=document.imgform.images;
+			image.style.positon='relative';
+			image.style.margin='0px';
+		}
+		function moveImage(){
+			image.style.margin=parseInt(image.style.margin)+100+'px';
+			alert(image.style.margin);
+		}
+		function animateImage(){
+			image.style.margin=parseInt(image.style.margin)+1+'px';
+			animate=setTimeout(animateImage,20);
+		}
+		function stopImage() {
+			clearTimeout(animate);
+			image.style.margin='0px';
+		}
+		window.onload=init;
+		if(document.images){
+			var img1 = new Image();
+			img1.src="apple-touch-icon.png";
+			var img2 = new Image();
+			img2.src="firstdonut.png";
+		}
+	</script>
+	<form name="imgform">
+		<img src="apple-touch-icon.png" id="myImage" name="images"><br>
+		<input type="button" value="Move Image" onclick="moveImage();">
+		<input type="button" value="animate image" onclick="animateImage();">
+		<input type="button" value="stop image" onclick="stopImage();">
+	</form>
+	<p>Mouse over to roll over</p>
+	<a href="#" onmouseover="document.img.src=img1.src;" onmouseout="document.img.src=img2.src;">
+		<img src="#" name="img">
+		Here
+	</a>
+</body>
+</html>
