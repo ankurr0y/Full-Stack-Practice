@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+  	<span id="one"></span><br>
+	<span id="two"></span>
+	<script type="text/javascript">
+		var arr1=['34','23'];
+		var arr2=['2','34','5'];
+		function confirm(arr_element) {
+			return arr_element>'10';
+			document.writeln(x);
+		}
+		one=arr1.every(confirm);
+		two=arr2.every(confirm);
+		document.getElementById('one').innerHTML=one;
+		document.getElementById('two').innerHTML=two;
+		arr1.forEach(function display(values) {
+			document.writeln(values);
+		});
+		var here="This is a sentence";
+		document.writeln(here);
+		document.writeln(here.search('sentence'));
+		document.write(arr2+'<br>');
+		document.write(arr2.pop()+'<br>');
+		document.write(arr2);
+	</script>
+	
+</body>
+</html>

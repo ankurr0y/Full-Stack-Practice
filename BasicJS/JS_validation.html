@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function validator(){
+			var name=document.detailsForm.name.value;
+			var password=document.detailsForm.password.value;
+			var password2=document.detailsForm.password2.value;
+			var email=document.detailsForm.email.value;
+			var atPosition=email.indexOf('@');
+			var dotPosition=email.lastIndexOf('.');
+			if(atPosition<1 || dotPosition<atPosition+2 || dotPosition+2>=email.length){
+				alert("atPosition:"+atPosition+"\n dotPosition:"+dotPosition);
+				return false;
+			}
+			if (name==null||name=="") {
+				alert("Enter a name");
+				return false;
+			}
+			if (password.length<8) {
+				alert("Enter password of longer length");
+				return false;
+			}
+			if(password2!=password){
+				alert("Passwords not the same");
+				return false;
+			}
+		}
+		function numChecker() {
+			var num=document.numForm.number.value;
+			if (isNaN(num)) {
+				document.getElementById('disp').innerHTML="Not a number";
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	</script>
+	<form name="detailsForm" method="post" onsubmit="validator()">
+		<input type="text" name="name" placeholder="Enter Name"><br>
+		<input type="password" name="password" placeholder="Enter password"><br>
+		<input type="password" name="password2" placeholder="Re-enter password"><br>
+		<input type="text" name="email" placeholder="Enter e-mail"><br>
+		<input type="submit" name="Submit" value="Submit">
+	</form>
+	<form name="numForm" method="post" onsubmit="numChecker()">
+		<input type="text" name="number" placeholder="Enter a number"><br>
+		<input type="submit" name="Submit"><br>
+	</form>
+	<p id="disp"></p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var i;
+		var array=new Array("One","Two","Three");
+		var array1=new Array("Four","Five","Six");
+		var array2=new Array("Seven","Eight");
+		array=array.concat(array1,array2,"Nine");
+		for(i=0;i<array.length;i++)
+		{
+			document.write(array[i]+"<br>");
+		}
+		var output=array.copyWithin(0,1,2);//Between 2st and 3rd elements
+		document.writeln(output+"<br>");
+		var output2=output.copyWithin(3,2);
+		document.writeln(output2+"<br>");
+		var output3=output2.copyWithin(8);
+		document.writeln(output3+"<br>");
+		array2.length=55;
+		array2.fill("Ankur",3);
+		document.writeln(array2);
+		var arr1=[34,23];
+		var arr2=[2,34,5];
+		function confirm(arr_element) {
+			return x>10;
+			document.writeln(x);
+		}
+		one=arr1.every(confirm);
+		two=arr2.every(confirm);
+		document.getElementById('one').innerHTML=one;
+		document.getElementById('two').innerHTML=two;
+		arr1.forEach(function display(values) {
+			document.writeln(values);
+		});
+	</script>
+</body>
+</html>

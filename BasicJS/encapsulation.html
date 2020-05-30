@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Age{
+			constructor(){
+				var age;
+			}
+			setAge(a){
+				this.age=a;
+			}
+			getAge(){
+				return this.age;
+			}
+		}
+		var age1=new Age();
+		age1.setAge(33);
+		document.writeln("Age:"+age1.getAge()+'<br>');
+		age1.setAge(22);
+		document.writeln("Age:"+age1.getAge());
+	</script>
+</body>
+</html>

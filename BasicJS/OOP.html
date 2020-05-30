@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Student{//Declare this first
+			constructor (name,roll)
+			{
+				this.name=name;
+				this.roll=roll;
+			}
+			getter(){
+				return "Name:"+this.name+"<br>Roll no."+this.roll;
+			}
+		}
+		var student1=new Student("One",1);
+		var student2=new Student("Two",1);
+		document.writeln(student1.getter()+"<br>");
+		document.writeln(student2.getter());
+		var animal=class{
+			constructor (color)
+			{
+				this.color=color;
+			}
+			getter(){
+				document.writeln("Color is:"+this.color);
+			}
+		}
+		var a=new animal("Green");
+		a.getter();
+		var abc={a:'A',b:'B',c:'C'};
+		document.write(abc.a+abc.b+abc.c);
+		var xyz=new Object();
+		xyz.x="X";
+		xyz.y="Y";
+		xyz.z="Z";
+		document.write(xyz.x+xyz.y+xyz.z);
+		function person(age){
+			this.age=age;
+			this.setAge=setAge;
+			function setAge(newAge){
+				this.age=newAge;
+			}
+		}
+		p = new person(13);
+		document.write("Age"+p.age);
+		p.setAge(54);
+		document.write("<br>Age"+p.age);
+	</script>
+</body>
+</html>

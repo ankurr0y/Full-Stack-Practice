@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>Name of Plugin</th>
+			<th>Filename</th>
+			<th>Description</th>
+		</tr>
+		<script type="text/javascript">
+			for(var x=0;x<navigator.plugins.length;x++){
+				document.write("<tr><td>");
+				document.write(navigator.plugins[x].name);
+				document.write("</td><td>");
+				document.write(navigator.plugins[x].filename);
+				document.write("</td><td>");
+				document.write(navigator.plugins[x].description);
+				document.write("</td></tr>");				
+			}
+		</script>
+	</table>
+	<script type="text/javascript">
+		function playMedia() {
+			if (! document.vid.IsPlaying()){
+				document.vid.Play();
+			}
+		}
+		function stopMedia() {
+			if (document.vid.IsPlaying()) {
+				document.vid.StopPlay();
+			}
+		}
+		function rewindMedia() {
+			if (document.vid.IsPlaying()) {
+				document.vid.StopPlay();
+			}
+			document.vid.Rewind();
+		}
+	</script>
+	<embed width="853" height="480" src="https://www.youtube.com/embed/SsoddHEsU88" name="vid" play="false" loop="false" id="vid" swliveconnect="true"></embed>
+	<form name="form1" method="get" action="#">
+		<input type="button" value="Play" onclick="playMedia();">
+		<input type="button" value="Stop" onclick="stopMedia();">
+		<input type="button" value="Rewind" onclick="rewindMedia();">
+	</form>
+</body>
+</html>

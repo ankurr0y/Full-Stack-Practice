@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Student(name,score) {
+			var s_name=name;
+			var s_score=score;
+			Object.defineProperty(this,"name",{
+				get:function(){
+					return s_name;
+				},
+				set:function(name){
+					s_name=name;
+				}
+			});
+			Object.defineProperty(this,"score",{
+				get:function(){
+					return s_score;
+				},
+				set:function(score){
+					st_score=score;
+				}
+			});
+		}
+		var st= new Student("One",34);
+		document.writeln("Name:"+ st.name+"<br>Score:"+st.score);
+	</script>
+</body>
+</html>

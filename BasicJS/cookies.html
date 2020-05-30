@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function readCookies(){
+			var cookies=document.cookie;
+			myArray=cookies.split(';');
+			for (var i = 0; i <myArray.length; i++) {
+				name=myArray[i].split('=')[0];
+				value-myArray[i].split('=')[1];
+				document.write("Key:"+name+"Value:"+value);
+			}
+		}
+		function createCookies() {
+			document.cookie="Value ="+"56;";
+		}
+	</script>
+	<button onclick="createCookies()">Create a cookie</button>
+	<button onclick="readCookies();" value="Read Cookies">Read Cookies</button>
+</body>
+</html>

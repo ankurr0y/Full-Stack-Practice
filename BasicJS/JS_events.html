@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body onload="inspectCookies()">
+	<div onmouseover="onMouseOver()" onmouseout="onMouseOut()">Over Here!!</div>
+	<p id="example"></p><br><br><br><br><br><br>
+	Name: <input type="text" id="name" onchange="testFunc()" onfocus="colorFunc(this)">
+	<button onclick="getStatement()">This button</button>
+	<script type="text/javascript">
+		function getStatement() {
+			alert("Statement");
+		}
+		function onMouseOut() {
+			document.writeln("Mouse is out");
+		}
+		function onMouseOver() {
+			document.writeln("Mouse is over");
+		}
+		function inspectCookies() {
+			var txt="";
+			if(navigator.cookieEnabled==true){
+				txt="Cookies are enabled";
+			}
+			else{
+				txt="Cookies aren't enabled";
+			}
+			document.getElementById('example').innerHTML=txt;
+		}
+		function testFunc() {
+			var a=document.getElementById("name");
+			a.value=a.value.toUpperCase();//changes name to upper case on leaving
+		}
+		function colorFunc(col) {
+			col.style.background="blue";
+		}
+	</script>
+</body>
+</html>
