@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Current extends Date{
+			constructor(year){
+				super(year);
+			}
+		}
+		var c=new Current();
+		document.writeln("Year is:"+c.getFullYear);
+		class Car{
+			constructor(){
+				this.manufacturer="Honda";
+			}
+		}
+		class Model extends Car{
+			constructor(name,year){
+				super();
+				this.name=name;
+				this.year=year;
+			}
+		}
+		var m = new Model("One",2012);
+		document.writeln(m.manufacturer+" "+m.name+" "+m.year);
+	</script>
+</body>
+</html>

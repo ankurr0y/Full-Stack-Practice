@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Name(firstName,lastName) {
+			this.firstName=firstName;
+			this.lastName=lastName;
+		}
+		Name.prototype.fullName = function() {
+			return this.firstName+" "+this.lastName;
+		};
+		var name1=new Name("Paul","McCartney");
+		var name2=new Name("John","Lennon");
+		document.writeln(name1.fullName()+"<br>");
+		document.writeln(name2.fullName());
+		function car(manufacturer) {
+			this.manufacturer=manufacturer;
+		}
+		car.prototype.getManufacturer=function() 
+		{
+			return this.manufacturer;
+		}
+		function Model(name,year){
+			this.name=name;
+			this.year=year;
+		}
+		var c=new car("Ford");
+		var m=new Model("One",2014);
+		m.prototype=c;
+		document.write(m.getManufacturer()+" "+model.name+" "+model.year);
+	</script>
+</body>
+</html>
