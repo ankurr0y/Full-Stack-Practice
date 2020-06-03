@@ -1,0 +1,105 @@
+> dbs
+2020-06-01T17:37:06.099+0545 E  QUERY    [js] uncaught exception: ReferenceError: dbs is not defined :
+@(shell):1:1
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+practice_db  0.000GB
+> use practice_db
+switched to db practice_db
+> db.table1.insert({})
+WriteResult({ "nInserted" : 1 })
+> db.table1
+practice_db.table1
+> show db.table_1
+2020-06-01T17:38:34.619+0545 E  QUERY    [js] uncaught exception: Error: don't know how to show [db.table_1] :
+shellHelper.show@src/mongo/shell/utils.js:1139:11
+shellHelper@src/mongo/shell/utils.js:790:15
+@(shellhelp2):1:1
+> db.table1.insert({one:"one",two:"two"})
+WriteResult({ "nInserted" : 1 })
+> db.table1.insertOne(First_Name:"Ankur",Last_Name="Roy")
+2020-06-01T17:40:40.715+0545 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:30
+> db.table1.insertOne({First_Name:"Ankur",Last_Name="Roy"})
+2020-06-01T17:40:59.153+0545 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:49
+> db.name_table.insertOne({First_Name:"Ankur",Last_Name="Roy"})
+2020-06-01T17:41:26.816+0545 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:53
+> db.name_table.insertOne({First_Name:"Ankur",Last_Name:"Roy"})->Inset single value
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5ed4ecf543608d610f75453e")
+}
+> db.name_table.insertMany({First_Name:"Ankur",Last_Name:"Roy"},{First_Name:"One",Last_Name:"Two"})-> Insert many values
+2020-06-01T17:42:29.412+0545 E  QUERY    [js] uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.name_table.insertMany([{First_Name:"Ankur",Last_Name:"Roy"},{First_Name:"One",Last_Name:"Two"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("5ed4ed4d43608d610f75453f"),
+                ObjectId("5ed4ed4d43608d610f754540")
+        ]
+}
+> db.name_table.find("Ankur")
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "ReferenceError: Ankur is not defined :\n@:1:15\n",
+        "code" : 139,
+        "codeName" : "JSInterpreterFailure"
+}
+> db.name_table.find(First_Name)
+2020-06-01T17:43:53.321+0545 E  QUERY    [js] uncaught exception: ReferenceError: First_Name is not defined :
+@(shell):1:1
+> db.name_table.find()
+{ "_id" : ObjectId("5ed4ecf543608d610f75453e"), "First_Name" : "Ankur", "Last_Name" : "Roy" }
+{ "_id" : ObjectId("5ed4ed4d43608d610f75453f"), "First_Name" : "Ankur", "Last_Name" : "Roy" }
+{ "_id" : ObjectId("5ed4ed4d43608d610f754540"), "First_Name" : "One", "Last_Name" : "Two" }
+> db.name_table.find().pretty()->Find in a decorated way
+{
+        "_id" : ObjectId("5ed4ecf543608d610f75453e"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f75453f"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f754540"),
+        "First_Name" : "One",
+        "Last_Name" : "Two"
+}
+> db.name_table.findOne({First_Name:"Ankur"})->Find one
+{
+        "_id" : ObjectId("5ed4ecf543608d610f75453e"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+> db.name_table.find({$and: [{First_Name:"Ankur"},{Last_Name:"Roy"}]})
+{ "_id" : ObjectId("5ed4ecf543608d610f75453e"), "First_Name" : "Ankur", "Last_Name" : "Roy" }
+{ "_id" : ObjectId("5ed4ed4d43608d610f75453f"), "First_Name" : "Ankur", "Last_Name" : "Roy" }
+> db.name_table.find({$or: [{First_Name:"Ankur"},{Last_Name:"Roy"}]}).pretty()->Find multiple
+{
+        "_id" : ObjectId("5ed4ecf543608d610f75453e"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f75453f"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+> db.name_table.find({$not: [{First_Name:"Ankur"},{Last_Name:"Roy"}]}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown top level operator: $not",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+>

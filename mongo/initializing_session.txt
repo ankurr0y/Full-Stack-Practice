@@ -1,0 +1,9 @@
+C:\Program Files\MongoDB\Server\4.2\bin>mongod.exe --dbpath "C:\data"-->Initialization
+
+C:\Program Files\MongoDB\Server\4.2\bin>mongo.exe
+MongoDB shell version v4.2.7-->Executing envionment
+
+^^^^^Always use the above code when initializing MongoDB
+
+db.help() for help
+db.stats() for stats

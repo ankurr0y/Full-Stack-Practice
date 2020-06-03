@@ -1,0 +1,156 @@
+> db
+test
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+practice_db  0.000GB
+> use practice_db
+switched to db practice_db
+> show tables
+name_table
+practice
+table1
+> practice_db.name_table
+2020-06-02T18:27:13.037+0545 E  QUERY    [js] uncaught exception: ReferenceError: practice_db is not defined :
+@(shell):1:1
+> practice_db.name_table.find().pretty()
+2020-06-02T18:27:52.120+0545 E  QUERY    [js] uncaught exception: ReferenceError: practice_db is not defined :
+@(shell):1:1
+> db.name_table.find().pretty()
+{
+        "_id" : ObjectId("5ed4ecf543608d610f75453e"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f75453f"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f754540"),
+        "First_Name" : "One",
+        "Last_Name" : "Two"
+}
+> db.name_table.update({'_id':ObjectId("5ed4ed4d43608d610f754540")},{$set:{'First_Name':'Firstname'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.name_table.find().pretty()
+{
+        "_id" : ObjectId("5ed4ecf543608d610f75453e"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f75453f"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f754540"),
+        "First_Name" : "Firstname",
+        "Last_Name" : "Two"
+}
+> db.name_table.update({'_id':ObjectId("5ed4ed4d43608d610f754540")},{$set:{'First_Name':'Firstname'}},{multi:true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.name_table.save({'_id':ObjectId("5ed4ed4d43608d610f754540"),"First_Name":"First","Last_Name":"Last"})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.name_table.find().pretty()
+{
+        "_id" : ObjectId("5ed4ecf543608d610f75453e"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f75453f"),
+        "First_Name" : "Ankur",
+        "Last_Name" : "Roy"
+}
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f754540"),
+        "First_Name" : "First",
+        "Last_Name" : "Last"
+}
+> db.name_table.remove({"First_Name":"Ankur"})
+WriteResult({ "nRemoved" : 2 })
+> db.name_table.find().pretty()
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f754540"),
+        "First_Name" : "First",
+        "Last_Name" : "Last"
+}
+> db.name_table.remove({"First_Name":"Ankur"},1)
+WriteResult({ "nRemoved" : 0 })
+> db.name_table.insertMany({"First_Name":"Last","Last_Name":"First"},{"First_Name":"F","Last_Name":"L"},{"First_Name":"One","Last_Name":"Two"})
+2020-06-02T18:41:46.361+0545 E  QUERY    [js] uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.name_table.insertMany([{"First_Name":"Last","Last_Name":"First"},{"First_Name":"F","Last_Name":"L"},{"First_Name":"One","Last_Name":"Two"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("5ed64cad86178255c798c94b"),
+                ObjectId("5ed64cad86178255c798c94c"),
+                ObjectId("5ed64cad86178255c798c94d")
+        ]
+}
+> db.name_table.find({},{"title":1,_id=0})
+2020-06-02T18:47:00.479+0545 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:36
+> db.name_table.find({},{"title":1,_id:0})
+{  }
+{  }
+{  }
+{  }
+> db.name_table.find({},{"First_name":1,_id:0})
+{  }
+{  }
+{  }
+{  }
+> db.name_table.find({},{"First_Name":1,_id:0})
+{ "First_Name" : "First" }
+{ "First_Name" : "Last" }
+{ "First_Name" : "F" }
+{ "First_Name" : "One" }
+> db.name_table.find().pretty()
+{
+        "_id" : ObjectId("5ed4ed4d43608d610f754540"),
+        "First_Name" : "First",
+        "Last_Name" : "Last"
+}
+{
+        "_id" : ObjectId("5ed64cad86178255c798c94b"),
+        "First_Name" : "Last",
+        "Last_Name" : "First"
+}
+{
+        "_id" : ObjectId("5ed64cad86178255c798c94c"),
+        "First_Name" : "F",
+        "Last_Name" : "L"
+}
+{
+        "_id" : ObjectId("5ed64cad86178255c798c94d"),
+        "First_Name" : "One",
+        "Last_Name" : "Two"
+}
+> db.name_table.find().limit(2)
+{ "_id" : ObjectId("5ed4ed4d43608d610f754540"), "First_Name" : "First", "Last_Name" : "Last" }
+{ "_id" : ObjectId("5ed64cad86178255c798c94b"), "First_Name" : "Last", "Last_Name" : "First" }
+> db.name_table.find().limit(2).skip(1)
+{ "_id" : ObjectId("5ed64cad86178255c798c94b"), "First_Name" : "Last", "Last_Name" : "First" }
+{ "_id" : ObjectId("5ed64cad86178255c798c94c"), "First_Name" : "F", "Last_Name" : "L" }
+> db.name_table.find({},{"First_Name":1,_id:0}).sort({"title":-1})
+{ "First_Name" : "First" }
+{ "First_Name" : "Last" }
+{ "First_Name" : "F" }
+{ "First_Name" : "One" }
+> db.name_table.find({},{"First_Name":1,_id:0}).sort({"First_Name":-1})
+{ "First_Name" : "One" }
+{ "First_Name" : "Last" }
+{ "First_Name" : "First" }
+{ "First_Name" : "F" }
+> db.name_table.find({},{"First_Name":1,_id:0}).sort({"First_Name":1})
+{ "First_Name" : "F" }
+{ "First_Name" : "First" }
+{ "First_Name" : "Last" }
+{ "First_Name" : "One" }

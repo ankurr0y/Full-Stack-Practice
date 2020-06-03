@@ -1,0 +1,44 @@
+Made MongoDB part of the path variable
+
+Session:
+> db
+test
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use practice_db
+switched to db practice_db
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.createCollection("practice")
+{ "ok" : 1 }
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+practice_db  0.000GB
+> show collections
+practice
+> use local
+switched to db local
+> show collection
+2020-05-31T19:10:28.493+0545 E  QUERY    [js] uncaught exception: Error: don't know how to show [collection] :
+shellHelper.show@src/mongo/shell/utils.js:1139:11
+shellHelper@src/mongo/shell/utils.js:790:15
+@(shellhelp2):1:1
+> show collections
+startup_log
+> use practice_db
+switched to db practice_db
+> db.createCollection("dropper")
+{ "ok" : 1 }
+> show collections
+dropper
+practice
+> db.dropper.drop()
+true
+> show collections
+practice
