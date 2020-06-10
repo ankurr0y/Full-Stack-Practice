@@ -13,6 +13,12 @@ app.get('/',function(request,response){//Default code is 200
 app.get('/about',function(request,response){
     response.render('about',{number:num.getNum()});
 });
+app.get('/headers',function(request,response){
+    response.set('Content-Type','text/plain');
+    var s='';
+    for(var name in request.headers) s+= name+':'+request.headers[name]+'\n';
+    response.send(s);
+});
 app.use(function(request,response){
     //response.status(404);
     response.render('404');
