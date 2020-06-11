@@ -11,13 +11,19 @@ app.get('/',function(request,response){//Default code is 200
     response.render('home');
 });
 app.get('/about',function(request,response){
-    response.render('about',{number:num.getNum()});
+    response.render('about',{number:num.getNum()});//{message: 'welcome' ,style: req. query. style,userid: req. cookie. userid,username: req. session. username,}
 });
 app.get('/headers',function(request,response){
     response.set('Content-Type','text/plain');
     var s='';
     for(var name in request.headers) s+= name+':'+request.headers[name]+'\n';
     response.send(s);
+});
+app.get('/no-layout',function(request,response){
+    response.render('No-layout',{layout:null});
+});
+app.get('/custom',function(request,response){
+    response.render('custom-layout',{layout:'custom'});
 });
 app.use(function(request,response){
     //response.status(404);
