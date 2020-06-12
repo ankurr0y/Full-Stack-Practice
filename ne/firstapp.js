@@ -25,6 +25,9 @@ app.get('/no-layout',function(request,response){
 app.get('/custom',function(request,response){
     response.render('custom-layout',{layout:'custom'});
 });
+app.get('/apis/eg/example',function(request,response){
+    response.json({'One':1,'Two':2});
+});
 app.use(function(request,response){
     //response.status(404);
     response.render('404');
